@@ -70,10 +70,10 @@
     </build>
 
     <modules>
-        <module>api</module>
-        <module>server</module>
-        <module>client</module>   
-      <module>monitoring</module> 		
+        <module>application-grpc-api</module>
+        <module>application-grpc-server</module>
+        <module>application-grpc-client</module>   
+      <module>application-grpc-monitoring</module> 		
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
