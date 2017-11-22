@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.naren</groupId>
-	<artifactId>com.naren.grpc.sample.monitoring</artifactId>
+	<artifactId>application-grpc-monitoring</artifactId>
 	<packaging>jar</packaging>
 	<name>monitoring</name>
 	<parent>
 		<groupId>com.naren</groupId>
-		<artifactId>com.naren.grpc.sample</artifactId>
+		<artifactId>application-grpc</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>

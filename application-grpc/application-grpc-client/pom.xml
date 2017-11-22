@@ -5,32 +5,37 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.naren</groupId>
-	<artifactId>com.naren.grpc.sample.server</artifactId>
+	<artifactId>application-grpc-client</artifactId>
 	<packaging>jar</packaging>
-	<name>server</name>
+	<name>client</name>
+
 	<parent>
 		<groupId>com.naren</groupId>
-		<artifactId>com.naren.grpc.sample</artifactId>
+		<artifactId>application-grpc</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-all</artifactId>
+			<version>1.7.0</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
-
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-all</artifactId>
-			<version>1.7.0</version>
-		</dependency>
 		<dependency>
 			<groupId>com.naren</groupId>
 			<artifactId>com.naren.grpc.sample.api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.naren</groupId>
+			<artifactId>com.naren.grpc.sample.server</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
@@ -54,7 +59,7 @@
 				<configuration>
 					<bnd>
                         <![CDATA[
-                        Export-Package: com.naren.sample.grpc.helloworld.server
+                        DynamicImport-Package: *
                         ]]>
 					</bnd>
 				</configuration>

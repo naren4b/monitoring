@@ -6,12 +6,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.naren</groupId>
-    <artifactId>com.naren.grpc.sample.api</artifactId>
+    <artifactId>application-grpc-api</artifactId>
     <packaging>jar</packaging>
      <name>api</name>
     <parent>
         <groupId>com.naren</groupId>
-        <artifactId>com.naren.grpc.sample</artifactId>
+        <artifactId>application-grpc</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
