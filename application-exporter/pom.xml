@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.nokia.ndac</groupId>
-	<artifactId>JVMSystemParmetersExporter</artifactId>
-	<version>0.1.pr</version>
+	<groupId>com.naren.service</groupId>
+	<artifactId>application-exporter</artifactId>
+	 <version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>JVMSystemParmetersExporter</name>
-	<description>JVM System Parmeters Exporter</description>
+	<name>application-exporter</name>
+	<description>Application Exporter</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
