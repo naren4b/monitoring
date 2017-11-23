@@ -45,9 +45,9 @@ class MonitoringClientCallListener<S> extends ForwardingClientCallListener<S> {
 
 	@Override
 	public void onMessage(S responseMessage) {
-    if (grpcMethod.streamsResponses()) {
+		if (grpcMethod.streamsResponses()) {
 			clientMetrics.recordStreamMessageReceived();
-    }
+		}
 		super.onMessage(responseMessage);
 	}
 }
