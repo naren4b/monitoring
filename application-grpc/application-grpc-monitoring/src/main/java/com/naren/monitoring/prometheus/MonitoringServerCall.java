@@ -21,7 +21,6 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 	private final ServerMetrics serverMetrics;
 	private final Configuration configuration;
 	private final Instant startInstant;
-	private final long startTime;
 
 	MonitoringServerCall(ServerCall<R, S> delegate, Clock clock, GrpcMethod grpcMethod, ServerMetrics serverMetrics,
 			Configuration configuration) {
@@ -31,7 +30,6 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 		this.serverMetrics = serverMetrics;
 		this.configuration = configuration;
 		this.startInstant = clock.instant();
-		startTime = System.currentTimeMillis();
 		reportStartMetrics();
 	}
 
