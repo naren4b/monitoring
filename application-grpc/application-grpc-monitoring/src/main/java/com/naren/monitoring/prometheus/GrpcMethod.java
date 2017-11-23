@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import io.grpc.MethodDescriptor;
 import io.grpc.MethodDescriptor.MethodType;
@@ -36,11 +36,11 @@ class GrpcMethod {
 		return type.toString();
 	}
 
-//	boolean streamsRequests() {
-//		return type == MethodType.CLIENT_STREAMING || type == MethodType.BIDI_STREAMING;
-//	}
-//
-//	boolean streamsResponses() {
-//		return type == MethodType.SERVER_STREAMING || type == MethodType.BIDI_STREAMING;
-//	}
+  boolean streamsRequests() {
+    return type == MethodType.CLIENT_STREAMING || type == MethodType.BIDI_STREAMING || type == MethodType.UNARY ;
+  }
+
+  boolean streamsResponses() {
+    return type == MethodType.SERVER_STREAMING || type == MethodType.BIDI_STREAMING || type == MethodType.UNARY ;
+  }
 }

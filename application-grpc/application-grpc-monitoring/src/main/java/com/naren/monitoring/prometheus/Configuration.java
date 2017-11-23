@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import io.prometheus.client.CollectorRegistry;
 

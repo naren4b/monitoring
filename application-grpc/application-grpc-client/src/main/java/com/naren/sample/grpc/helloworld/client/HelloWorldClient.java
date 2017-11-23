@@ -1,14 +1,14 @@
 package com.naren.sample.grpc.helloworld.client;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.naren.daaas.prometheus.Configuration;
-import com.naren.daaas.prometheus.GrpcMetricService;
-import com.naren.daaas.prometheus.MonitoringClientInterceptor;
-import com.naren.daaas.prometheus.MonitoringService;
+import com.naren.monitoring.prometheus.GrpcMetricService;
+import com.naren.monitoring.prometheus.MonitoringService;
 import com.naren.sample.grpc.api.GreeterGrpc;
 import com.naren.sample.grpc.api.HelloReply;
 import com.naren.sample.grpc.api.HelloRequest;
@@ -16,6 +16,7 @@ import com.naren.sample.grpc.api.MetricReply;
 import com.naren.sample.grpc.api.MetricRequest;
 import com.naren.sample.grpc.server.GrpcServer;
 
+import io.grpc.ClientInterceptor;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import io.grpc.okhttp.OkHttpChannelBuilder;
@@ -29,12 +30,19 @@ public class HelloWorldClient implements MonitoringService {
 	private ManagedChannel channel;
 	private GreeterGrpc.GreeterBlockingStub blockingStub;
 
-	public void activate() {
-		MonitoringClientInterceptor monitoringInterceptor = MonitoringClientInterceptor
-				.create(Configuration.cheapMetricsOnly());
+	private List<ClientInterceptor> interceptor;
 
-		channel = OkHttpChannelBuilder.forAddress(host, port).intercept(monitoringInterceptor).usePlaintext(true)
-				.build();
+	public HelloWorldClient() {
+		interceptor = new ArrayList<>();
+	}
+
+	public HelloWorldClient(List<ClientInterceptor> interceptor) {
+		this.interceptor = interceptor;
+	}
+
+	public void activate() {
+
+		channel = OkHttpChannelBuilder.forAddress(host, port).intercept(interceptor).usePlaintext(true).build();
 		blockingStub = GreeterGrpc.newBlockingStub(channel);
 
 	}

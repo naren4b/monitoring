@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,24 +32,24 @@ class ServerMetrics {
 
 	private static final Counter.Builder serverStartedBuilder = Counter.build().namespace(GRPC).subsystem(SERVER)
 			.name("started_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Total number of RPCs started on the server of OssViewsKPIService.");
+			.help("Total number of RPCs started on the server .");
 
 	private static final Counter.Builder serverHandledBuilder = Counter.build().namespace(GRPC).subsystem(SERVER)
 			.name("handled_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD, "code")
-			.help("Total number of RPCs completed on the server, regardless of success or failure of OssViewsKPIService.");
+			.help("Total number of RPCs completed on the server, regardless of success or failure .");
 
 	private static final Histogram.Builder serverHandledLatencySecondsBuilder = Histogram.build().namespace(GRPC)
 			.subsystem(SERVER).name("handled_latency_seconds").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
 			.help("Histogram of response latency (seconds) of gRPC that had been application-level "
-					+ "handled by the server of OssViewsKPIService.");
+					+ "handled by the server .");
 
 	private static final Counter.Builder serverStreamMessagesReceivedBuilder = Counter.build().namespace(GRPC)
 			.subsystem(SERVER).name("msg_received_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Total number of stream messages received from the client of OssViewsKPIService.");
+			.help("Total number of stream messages received from the client .");
 
 	private static final Counter.Builder serverStreamMessagesSentBuilder = Counter.build().namespace(GRPC)
 			.subsystem(SERVER).name("msg_sent_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Total number of stream messages sent by the server of OssViewsKPIService.");
+			.help("Total number of stream messages sent by the server .");
 
 	private final Counter serverStarted;
 	private final Counter serverHandled;
@@ -91,9 +91,10 @@ class ServerMetrics {
 	 * histograms. Otherwise, this does nothing.
 	 */
 	public void recordLatency(double latencySec) {
-		if (serverHandledLatencySeconds.isPresent()) {
-			addLabels(serverHandledLatencySeconds.get()).observe(latencySec);
+		if (!this.serverHandledLatencySeconds.isPresent()) {
+			return;
 		}
+		addLabels(this.serverHandledLatencySeconds.get()).observe(latencySec);
 	}
 
 	/**

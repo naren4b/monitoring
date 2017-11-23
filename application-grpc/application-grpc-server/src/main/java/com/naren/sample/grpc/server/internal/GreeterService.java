@@ -3,7 +3,7 @@ package com.naren.sample.grpc.server.internal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.naren.daaas.prometheus.GrpcMetricService;
+import com.naren.monitoring.prometheus.GrpcMetricService;
 import com.naren.sample.grpc.api.GreeterGrpc;
 import com.naren.sample.grpc.api.HelloReply;
 import com.naren.sample.grpc.api.HelloRequest;

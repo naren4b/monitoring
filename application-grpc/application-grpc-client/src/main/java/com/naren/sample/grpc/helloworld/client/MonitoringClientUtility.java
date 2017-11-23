@@ -1,6 +1,6 @@
 package com.naren.sample.grpc.helloworld.client;
 
-import com.naren.daaas.prometheus.MonitoringService;
+import com.naren.monitoring.prometheus.MonitoringService;
 
 public class MonitoringClientUtility extends Thread {
 

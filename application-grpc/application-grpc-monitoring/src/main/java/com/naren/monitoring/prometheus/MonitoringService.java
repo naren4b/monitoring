@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 public interface MonitoringService {
 

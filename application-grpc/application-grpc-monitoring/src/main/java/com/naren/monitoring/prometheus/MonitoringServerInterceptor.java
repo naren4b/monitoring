@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import java.time.Clock;
 
@@ -33,8 +33,8 @@ public class MonitoringServerInterceptor implements ServerInterceptor {
 	public <R, S> ServerCall.Listener<R> interceptCall(ServerCall<R, S> call, Metadata requestHeaders,
 			ServerCallHandler<R, S> next) {
 		MethodDescriptor<R, S> method = call.getMethodDescriptor();
-		ServerMetrics metrics = serverMetricsFactory.createMetricsForMethod(method);
 		GrpcMethod grpcMethod = GrpcMethod.of(method);
+		ServerMetrics metrics = serverMetricsFactory.createMetricsForMethod(method);
 		ServerCall<R, S> monitoringCall = new MonitoringServerCall(call, clock, grpcMethod, metrics, configuration);
 		return new MonitoringServerCallListener<>(next.startCall(monitoringCall, requestHeaders), metrics,
 				GrpcMethod.of(method));

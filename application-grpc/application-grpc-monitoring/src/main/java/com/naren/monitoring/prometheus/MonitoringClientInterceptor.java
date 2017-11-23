@@ -1,6 +1,4 @@
-// Copyright 2016 Dino Wernli. All Rights Reserved. See LICENSE for licensing terms.
-
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import java.time.Clock;
 

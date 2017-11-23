@@ -6,8 +6,8 @@ import java.util.concurrent.CompletableFuture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.naren.daaas.prometheus.Configuration;
-import com.naren.daaas.prometheus.MonitoringServerInterceptor;
+import com.naren.monitoring.prometheus.Configuration;
+import com.naren.monitoring.prometheus.MonitoringServerInterceptor;
 import com.naren.sample.grpc.api.GreeterGrpc;
 import com.naren.sample.grpc.server.internal.GreeterService;
 
@@ -34,7 +34,7 @@ public class GreetServerImpl implements GrpcServer {
 				throw new Exception("please set the service.");
 			}
 			MonitoringServerInterceptor monitoringInterceptor = MonitoringServerInterceptor
-					.create(Configuration.cheapMetricsOnly());
+					.create(Configuration.allMetrics());
 			server = NettyServerBuilder.forPort(port)
 					.addService(ServerInterceptors.intercept(GreeterGrpc.bindService(service), monitoringInterceptor))
 					.build().start();

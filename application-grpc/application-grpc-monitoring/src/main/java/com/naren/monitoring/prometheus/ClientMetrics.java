@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,23 +29,23 @@ class ClientMetrics {
 
 	private static final Counter.Builder rpcStartedBuilder = Counter.build().namespace(GRPC).subsystem(CLIENT)
 			.name("started_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Total number of RPCs started on the client of OssViewsKPIService.");
+			.help("Total number of RPCs started on the client .");
 
 	private static final Counter.Builder rpcCompletedBuilder = Counter.build().namespace(GRPC).subsystem(CLIENT)
 			.name("completed").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD, "code")
-			.help("Total number of RPCs completed on the client, regardless of success or failure of OssViewsKPIService.");
+			.help("Total number of RPCs completed on the client, regardless of success or failure .");
 
 	private static final Histogram.Builder completedLatencySecondsBuilder = Histogram.build().namespace(GRPC)
 			.subsystem(CLIENT).name("completed_latency_seconds").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Histogram of rpc response latency (in seconds) for completed rpcs of OssViewsKPIService.");
+			.help("Histogram of rpc response latency (in seconds) for completed rpcs .");
 
 	private static final Counter.Builder streamMessagesReceivedBuilder = Counter.build().namespace(GRPC)
 			.subsystem(CLIENT).name("msg_received_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Total number of stream messages received from the server of OssViewsKPIService.");
+			.help("Total number of stream messages received from the server .");
 
 	private static final Counter.Builder streamMessagesSentBuilder = Counter.build().namespace(GRPC).subsystem(CLIENT)
 			.name("msg_sent_total").labelNames(GRPC_TYPE, GRPC_SERVICE, GRPC_METHOD)
-			.help("Total number of stream messages sent by the client of OssViewsKPIService.");
+			.help("Total number of stream messages sent by the client .");
 
 	private final Counter rpcStarted;
 	private final Counter rpcCompleted;

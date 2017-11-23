@@ -1,6 +1,6 @@
 package com.naren.sample.grpc.server;
 
-import com.naren.daaas.prometheus.GrpcMetricService;
+import com.naren.monitoring.prometheus.GrpcMetricService;
 import com.naren.sample.grpc.server.GrpcServer;
 
 public class ServerUtility {

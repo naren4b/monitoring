@@ -1,6 +1,4 @@
-// Copyright 2016 Dino Wernli. All Rights Reserved. See LICENSE for licensing terms.
-
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -47,7 +45,9 @@ class MonitoringClientCallListener<S> extends ForwardingClientCallListener<S> {
 
 	@Override
 	public void onMessage(S responseMessage) {
+    if (grpcMethod.streamsResponses()) {
 			clientMetrics.recordStreamMessageReceived();
+    }
 		super.onMessage(responseMessage);
 	}
 }

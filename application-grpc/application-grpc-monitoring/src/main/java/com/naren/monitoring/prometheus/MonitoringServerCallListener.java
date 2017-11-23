@@ -1,4 +1,4 @@
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import io.grpc.ForwardingServerCallListener;
 import io.grpc.ServerCall;
@@ -25,35 +25,9 @@ class MonitoringServerCallListener<R> extends ForwardingServerCallListener<R> {
 
 	@Override
 	public void onMessage(R request) {
-		recordStreamMessageReceived();
+		if (grpcMethod.streamsRequests()) {
+			serverMetrics.recordStreamMessageReceived();
+		}
 		super.onMessage(request);
-	}
-
-	@Override
-	public void onCancel() {
-		recordStreamMessageReceived();
-		super.onCancel();
-	}
-
-	@Override
-	public void onComplete() {
-		recordStreamMessageReceived();
-		super.onComplete();
-	}
-
-	@Override
-	public void onHalfClose() {
-		recordStreamMessageReceived();
-		super.onHalfClose();
-	}
-
-	@Override
-	public void onReady() {
-		recordStreamMessageReceived();
-		super.onReady();
-	}
-
-	private void recordStreamMessageReceived() {
-		serverMetrics.recordStreamMessageReceived();
 	}
 }

@@ -1,6 +1,4 @@
-// Copyright 2016 Dino Wernli. All Rights Reserved. See LICENSE for licensing terms.
-
-package com.naren.daaas.prometheus;
+package com.naren.monitoring.prometheus;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -23,6 +21,7 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 	private final ServerMetrics serverMetrics;
 	private final Configuration configuration;
 	private final Instant startInstant;
+	private final long startTime;
 
 	MonitoringServerCall(ServerCall<R, S> delegate, Clock clock, GrpcMethod grpcMethod, ServerMetrics serverMetrics,
 			Configuration configuration) {
@@ -32,7 +31,7 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 		this.serverMetrics = serverMetrics;
 		this.configuration = configuration;
 		this.startInstant = clock.instant();
-
+		startTime = System.currentTimeMillis();
 		reportStartMetrics();
 	}
 
@@ -44,7 +43,9 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 
 	@Override
 	public void sendMessage(S message) {
+		if (grpcMethod.streamsResponses()) {
 			serverMetrics.recordStreamMessageSent();
+		}
 		super.sendMessage(message);
 	}
 
