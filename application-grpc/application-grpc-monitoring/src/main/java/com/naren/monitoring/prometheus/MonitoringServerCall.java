@@ -44,6 +44,10 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 		if (grpcMethod.streamsResponses()) {
 			serverMetrics.recordStreamMessageSent();
 		}
+		if (configuration.isIncludeLatencyHistograms()) {
+			double latencySec = (clock.millis() - startInstant.toEpochMilli()) / (double) MILLIS_PER_SECOND;
+			serverMetrics.recordLatency(latencySec);
+		}
 		super.sendMessage(message);
 	}
 
@@ -53,9 +57,6 @@ class MonitoringServerCall<R, S> extends ForwardingServerCall.SimpleForwardingSe
 
 	private void reportEndMetrics(Status status) {
 		serverMetrics.recordServerHandled(status.getCode());
-		if (configuration.isIncludeLatencyHistograms()) {
-			double latencySec = (clock.millis() - startInstant.toEpochMilli()) / (double) MILLIS_PER_SECOND;
-			serverMetrics.recordLatency(latencySec);
-		}
+		
 	}
 }
