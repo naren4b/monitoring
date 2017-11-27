@@ -17,6 +17,9 @@ public class GreeterService extends GreeterGrpc.AbstractGreeter implements Binda
 
 	private static final Logger LOG = LoggerFactory.getLogger(GreeterService.class);
 
+	public static final String SERVICE_NAME = "helloworld.Greeter";
+	public static final String UNARY_METHOD_NAME = "SayHello";
+
 	@Override
 	public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
 		LOG.info("sayHello endpoint received request from " + request.getName());
@@ -34,6 +37,5 @@ public class GreeterService extends GreeterGrpc.AbstractGreeter implements Binda
 		responseObserver.onCompleted();
 
 	}
-
 
 }
