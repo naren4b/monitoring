@@ -91,10 +91,9 @@ class ServerMetrics {
 	 * histograms. Otherwise, this does nothing.
 	 */
 	public void recordLatency(double latencySec) {
-		if (!this.serverHandledLatencySeconds.isPresent()) {
-			return;
+		if (this.serverHandledLatencySeconds.isPresent()) {
+			addLabels(this.serverHandledLatencySeconds.get()).observe(latencySec);
 		}
-		addLabels(this.serverHandledLatencySeconds.get()).observe(latencySec);
 	}
 
 	/**
@@ -126,6 +125,11 @@ class ServerMetrics {
 		<R, S> ServerMetrics createMetricsForMethod(MethodDescriptor<R, S> methodDescriptor) {
 			return new ServerMetrics(GrpcMethod.of(methodDescriptor), serverStarted, serverHandled,
 					serverStreamMessagesReceived, serverStreamMessagesSent, serverHandledLatencySeconds);
+		}
+
+		ServerMetrics createMetricsForMethod(GrpcMethod grpcMethod) {
+			return new ServerMetrics(grpcMethod, serverStarted, serverHandled, serverStreamMessagesReceived,
+					serverStreamMessagesSent, serverHandledLatencySeconds);
 		}
 	}
 

@@ -38,13 +38,7 @@
 			<artifactId>application-grpc-monitoring</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-testing -->
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-testing</artifactId>
-			<version>1.8.0</version>
-			<scope>test</scope>
-		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -59,13 +53,7 @@
 			<version>0.36</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-stub</artifactId>
-			<version>1.8.0</version>
-			<scope>test</scope>
-		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

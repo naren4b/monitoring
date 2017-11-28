@@ -16,12 +16,14 @@ class GrpcMethod {
 	}
 
 	static GrpcMethod of(MethodDescriptor<?, ?> method) {
-		String serviceName = MethodDescriptor.extractFullServiceName(method.getFullMethodName());
+		String fullMethodName = method.getFullMethodName();
+		String serviceName = MethodDescriptor.extractFullServiceName(fullMethodName);
+		String methodName = fullMethodName.substring(serviceName.length() + 1);
+		return of(serviceName, methodName, method.getType());
+	}
 
-		// Full method names are of the form: "full.serviceName/MethodName". We extract
-		// the last part.
-		String methodName = method.getFullMethodName().substring(serviceName.length() + 1);
-		return new GrpcMethod(serviceName, methodName, method.getType());
+	static GrpcMethod of(String serviceName, String methodName, MethodType type) {
+		return new GrpcMethod(serviceName, methodName, type);
 	}
 
 	String serviceName() {
@@ -36,11 +38,11 @@ class GrpcMethod {
 		return type.toString();
 	}
 
-  boolean streamsRequests() {
-    return type == MethodType.CLIENT_STREAMING || type == MethodType.BIDI_STREAMING || type == MethodType.UNARY ;
-  }
+	boolean streamsRequests() {
+		return type == MethodType.CLIENT_STREAMING || type == MethodType.BIDI_STREAMING || type == MethodType.UNARY;
+	}
 
-  boolean streamsResponses() {
-    return type == MethodType.SERVER_STREAMING || type == MethodType.BIDI_STREAMING || type == MethodType.UNARY ;
-  }
+	boolean streamsResponses() {
+		return type == MethodType.SERVER_STREAMING || type == MethodType.BIDI_STREAMING || type == MethodType.UNARY;
+	}
 }

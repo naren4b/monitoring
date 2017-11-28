@@ -22,7 +22,7 @@ public class GreeterService extends GreeterGrpc.AbstractGreeter implements Binda
 
 	@Override
 	public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-		LOG.info("sayHello endpoint received request from " + request.getName());
+		LOG.info("SayHello endpoint received request from " + request.getName());
 		HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request.getName()).build();
 		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
@@ -30,8 +30,7 @@ public class GreeterService extends GreeterGrpc.AbstractGreeter implements Binda
 
 	@Override
 	public void metric(MetricRequest request, StreamObserver<MetricReply> responseObserver) {
-
-		LOG.info("metric endpoint received request from " + request.getName());
+		LOG.info("Metric endpoint received request from " + request.getName());
 		MetricReply reply = MetricReply.newBuilder().setMetric(GrpcMetricService.metrics()).build();
 		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
