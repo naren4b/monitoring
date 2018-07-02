@@ -1,0 +1,1 @@
+minikube start --docker-env HTTP_PROXY=http://inban1b-proxy.apac.nsn-net.net:8080 --docker-env HTTPS_PROXY=https://inban1b-proxy.apac.nsn-net.net:8080 --docker-env NO_PROXY=192.168.99.100

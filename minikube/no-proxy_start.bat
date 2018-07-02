@@ -1,0 +1,1 @@
+minikube start --docker-env HTTP_PROXY="" --docker-env HTTPS_PROXY="" --docker-env NO_PROXY=""

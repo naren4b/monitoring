@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: example-app
+  labels:
+    k8s-app: example-app
+spec:
+  selector:
+    k8s-app: example-app
+  ports:
+  - name: web
+    port: 8080
+    targetPort: 8080
